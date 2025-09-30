@@ -40,7 +40,7 @@ jobs:
 
                   files: |
                       disable-biome-spawns-${{ inputs.version }}+mc${{ inputs.game_versions }}.zip
-                  name: ${{ inputs.version }}
+                  name: disable-biome-spawns-${{ inputs.version }}+mc${{ inputs.game_versions }}
                   version: ${{ inputs.version }}
                   version-type: ${{ inputs.release_type }}
                   changelog-file: CHANGELOG.md
