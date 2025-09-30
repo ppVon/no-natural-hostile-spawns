@@ -45,3 +45,5 @@ jobs:
                   version-type: ${{ inputs.release_type }}
                   changelog-file: CHANGELOG.md
                   game-versions: ${{ inputs.game_versions }}
+                  loaders: |
+                      datapack
