@@ -1,0 +1,84 @@
+{
+  "carvers": {
+    "air": "minecraft:nether_cave"
+  },
+  "downfall": 0.0,
+  "effects": {
+    "additions_sound": {
+      "sound": "minecraft:ambient.warped_forest.additions",
+      "tick_chance": 0.0111
+    },
+    "ambient_sound": "minecraft:ambient.warped_forest.loop",
+    "fog_color": 1705242,
+    "mood_sound": {
+      "block_search_extent": 8,
+      "offset": 2.0,
+      "sound": "minecraft:ambient.warped_forest.mood",
+      "tick_delay": 6000
+    },
+    "music": {
+      "max_delay": 24000,
+      "min_delay": 12000,
+      "replace_current_music": false,
+      "sound": "minecraft:music.nether.warped_forest"
+    },
+    "sky_color": 7254527,
+    "water_color": 4159204,
+    "water_fog_color": 329011
+  },
+  "features": [
+    [],
+    [],
+    [
+      "netherex:huge_elder_mushrooms"
+    ],
+    [],
+    [],
+    [],
+    [],
+    [
+      "netherex:glowstone_extra",
+      "netherex:glowstone",
+      "netherex:ore_gravel",
+      "netherex:ore_blackstone",
+      "netherex:ore_ancient_debris_small",
+      "netherex:ore_ancient_debris_large",
+      "netherex:ore_boomstone",
+      "netherex:ore_lively_gold",
+      "netherex:ore_lively_quartz"
+    ]
+  ],
+  "has_precipitation": false,
+  "spawn_costs": {
+    "minecraft:enderman": {
+      "charge": 0.7,
+      "energy_budget": 0.15
+    },
+    "minecraft:strider": {
+      "charge": 0.7,
+      "energy_budget": 0.15
+    },
+    "netherex:mogus": {
+      "charge": 0.4,
+      "energy_budget": 0.25
+    }
+  },
+  "spawners": {
+    "ambient": [],
+    "axolotls": [],
+    "creature": [
+      {
+        "type": "minecraft:strider",
+        "maxCount": 2,
+        "minCount": 1,
+        "weight": 10
+      }
+    ],
+    "misc": [],
+    "monster": [],
+    "underground_water_creature": [],
+    "water_ambient": [],
+    "water_creature": []
+  },
+  "temperature": 2.0
+}

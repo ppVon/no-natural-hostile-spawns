@@ -1,0 +1,58 @@
+{
+  "carvers": {},
+  "downfall": 0.0,
+  "effects": {
+    "fog_color": 10518688,
+    "mood_sound": {
+      "block_search_extent": 8,
+      "offset": 2.0,
+      "sound": "minecraft:ambient.cave",
+      "tick_delay": 6000
+    },
+    "sky_color": 0,
+    "water_color": 4159204,
+    "water_fog_color": 329011,
+    "particle": {
+      "options": {
+        "type": "minecraft:white_ash"
+      },
+      "probability": 0.01
+    },
+    "ambient_sound": "minecraft:ambient.warped_forest.loop"
+  },
+  "features": [
+    [
+      "endercon:end_center_island"
+    ],
+    [],
+    [],
+    [],
+    [
+      "minecraft:end_spike"
+    ],
+    [],
+    [],
+    [],
+    [
+      "endercon:end_ruins"
+    ],
+    [
+      "minecraft:end_platform",
+      "endercon:end_platform_island_1",
+      "endercon:end_platform_island_2"
+    ]
+  ],
+  "has_precipitation": false,
+  "spawn_costs": {},
+  "spawners": {
+    "ambient": [],
+    "axolotls": [],
+    "creature": [],
+    "misc": [],
+    "monster": [],
+    "underground_water_creature": [],
+    "water_ambient": [],
+    "water_creature": []
+  },
+  "temperature": 0.5
+}

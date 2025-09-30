@@ -1,0 +1,53 @@
+name: Release (manual)
+
+on:
+    workflow_dispatch:
+        inputs:
+            version:
+                description: "Version tag (e.g. v1.0.1)"
+                required: true
+            game_versions:
+                description: "Comma-separated MC versions (e.g. 1.21.1)"
+                required: true
+            release_type:
+                description: "release | beta | alpha"
+                required: true
+                default: "release"
+
+jobs:
+    build-and-publish:
+        runs-on: ubuntu-latest
+
+        steps:
+            - uses: actions/checkout@v4
+
+            - name: Build datapack zip
+              run: |
+                  set -euo pipefail
+                  rm -f disable-biome-spawns-*.zip
+                  cd pack
+                  zip -r ../disable-biome-spawns-${{ inputs.version }}.zip .
+
+            - name: Publish everywhere
+              uses: Kira-NT/mc-publish@v3
+              with:
+                  files: |
+                      disable-biome-spawns-${{ inputs.version }}.zip
+                  name: ${{ inputs.version }}
+                  version: ${{ inputs.version }}
+                  changelog: CHANGELOG.md
+
+                  modrinth-id: ${{ secrets.MODRINTH_PROJECT_ID }}
+                  modrinth-token: ${{ secrets.MODRINTH_TOKEN }}
+                  modrinth-version-type: ${{ inputs.release_type }}
+                  modrinth-game-versions: ${{ inputs.game_versions }}
+                  modrinth-loaders: |
+                      datapack
+                      vanilla
+
+                  curseforge-id: ${{ secrets.CURSEFORGE_PROJECT_ID }}
+                  curseforge-token: ${{ secrets.CURSEFORGE_TOKEN }}
+                  curseforge-game-versions: ${{ inputs.game_versions }}
+                  curseforge-release-type: ${{ inputs.release_type }}
+                  curseforge-changelog-type: markdown
+                  curseforge-display-name: "disable-biome-spawns ${{ inputs.version }}"
