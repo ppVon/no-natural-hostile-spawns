@@ -3,6 +3,15 @@ name: Release to Modrinth
 on:
     workflow_dispatch:
         inputs:
+            target:
+                description: "Publish Targets"
+                type: choice
+                options:
+                    - both
+                    - modrinth
+                    - curseforge
+                default: both
+                required: true
             version:
                 description: "Version tag (e.g. v1.2.0)"
                 required: true
@@ -35,12 +44,13 @@ jobs:
                   cd pack
                   zip -r "../disable-biome-spawns-${{ inputs.version }}+mc${{ inputs.min_version }}.zip" .
 
-            - name: Publish to Modrinth and Curseforge
+            # -------- BOTH --------
+            - name: Publish to Modrinth & CurseForge
+              if: ${{ inputs.target == 'both' }}
               uses: Kir-Antipov/mc-publish@v3.3
               with:
                   modrinth-id: ${{ secrets.MODRINTH_PROJECT_ID }}
                   modrinth-token: ${{ secrets.MODRINTH_TOKEN }}
-
                   curseforge-id: ${{ secrets.CURSEFORGE_PROJECT_ID }}
                   curseforge-token: ${{ secrets.CURSEFORGE_TOKEN }}
 
@@ -51,9 +61,53 @@ jobs:
                   version-type: ${{ inputs.release_type }}
                   changelog-file: CHANGELOG.md
 
-                  # Metadata shown on Modrinth
-                  game-versions: |
-                      >=${{ inputs.min_version }} <${{ inputs.max_version }}
-                  game-version-filter: releases
                   loaders: |
                       datapack
+                  game-versions: |
+                      >=${{ inputs.min_version }}
+                      <${{ inputs.max_version }}
+                  game-version-filter: releases
+
+            # -------- MODRINTH ONLY --------
+            - name: Publish to Modrinth
+              if: ${{ inputs.target == 'modrinth' }}
+              uses: Kir-Antipov/mc-publish@v3.3
+              with:
+                  modrinth-id: ${{ secrets.MODRINTH_PROJECT_ID }}
+                  modrinth-token: ${{ secrets.MODRINTH_TOKEN }}
+
+                  files: |
+                      disable-biome-spawns-${{ inputs.version }}+mc${{ inputs.min_version }}.zip
+                  name: disable-biome-spawns-${{ inputs.version }}+mc${{ inputs.min_version }}
+                  version: ${{ inputs.version }}
+                  version-type: ${{ inputs.release_type }}
+                  changelog-file: CHANGELOG.md
+
+                  loaders: |
+                      datapack
+                  game-versions: |
+                      >=${{ inputs.min_version }}
+                      <${{ inputs.max_version }}
+                  game-version-filter: releases
+
+            # -------- CURSEFORGE ONLY --------
+            - name: Publish to CurseForge
+              if: ${{ inputs.target == 'curseforge' }}
+              uses: Kir-Antipov/mc-publish@v3.3
+              with:
+                  curseforge-id: ${{ secrets.CURSEFORGE_PROJECT_ID }}
+                  curseforge-token: ${{ secrets.CURSEFORGE_TOKEN }}
+
+                  files: |
+                      disable-biome-spawns-${{ inputs.version }}+mc${{ inputs.min_version }}.zip
+                  name: disable-biome-spawns-${{ inputs.version }}+mc${{ inputs.min_version }}
+                  version: ${{ inputs.version }}
+                  version-type: ${{ inputs.release_type }}
+                  changelog-file: CHANGELOG.md
+
+                  loaders: |
+                      datapack
+                  game-versions: |
+                      >=${{ inputs.min_version }}
+                      <${{ inputs.max_version }}
+                  game-version-filter: releases
