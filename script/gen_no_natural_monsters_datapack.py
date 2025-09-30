@@ -188,9 +188,9 @@ def ensure_dir(p: Path): p.mkdir(parents=True, exist_ok=True)
 def main():
     ap = argparse.ArgumentParser(description="Generate a Paxi datapack that zeros monster spawns for ALL discovered biomes, preserving folder structure.")
     ap.add_argument("--instance", default=".", help="Path to instance root (where mods/, datapacks/, and 1.21.1.jar live)")
-    ap.add_argument("--output", default="config/paxi/datapacks/zzz_no_natural_monsters", help="Output Paxi datapack folder")
-    ap.add_argument("--pack-name", default="No Natural Monsters (Paxi)")
-    ap.add_argument("--pack-description", default="Zero out monster spawns for all biomes; creatures preserved when present")
+    ap.add_argument("--output", default="/datapacks/no-natural-hostile-spawns", help="Output datapack folder")
+    ap.add_argument("--pack-name", default="No Natural Hostile Spawns")
+    ap.add_argument("--pack-description", default="Completely disables natrual spawns of hostile mosnters.  Structures and Spawners will still generate mobs.")
     ap.add_argument("--pack-format", type=int, default=48)  # MC 1.21.x
     ap.add_argument("--overwrite", action="store_true", default=True)
     ap.add_argument("--wipe-non-monsters", dest="wipe_non_monsters", action="store_true", default=False)
